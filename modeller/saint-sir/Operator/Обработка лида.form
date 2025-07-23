@@ -1,0 +1,36 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-lead-processing",
+  "components": [
+    {
+      "label": "Информация о лиде",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_142hvw6",
+        "columns": null
+      },
+      "id": "Field_0lcuifr",
+      "key": "lead_info",
+      "defaultValue": "{}",
+      "properties": { }
+    },
+    {
+      "label": "Есть задача",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1s1rld2",
+        "columns": null
+      },
+      "id": "Field_1t155y9",
+      "key": "is_task_need"
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}

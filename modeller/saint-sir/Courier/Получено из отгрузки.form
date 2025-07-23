@@ -1,0 +1,24 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-0qlzft8",
+  "components": [
+    {
+      "label": "Инормация из отгрузки",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0ppr0u3",
+        "columns": null
+      },
+      "id": "Field_0lnnggq",
+      "key": "info_from_outbound",
+      "defaultValue": "{}"
+    }
+  ],
+  "type": "default"
+}

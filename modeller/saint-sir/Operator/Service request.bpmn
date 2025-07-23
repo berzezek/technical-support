@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="42c698d" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:process id="Process_request" name="Обработка заявки" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_task_process" name="Обработка заявки">
+      <bpmn:outgoing>Flow_1ws2hxu</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ws2hxu" sourceRef="StartEvent_task_process" targetRef="Activity_lead_exist" />
+    <bpmn:exclusiveGateway id="Gateway_is_lead_exists" name="Лид найден?" default="Flow_is_lead_exists">
+      <bpmn:incoming>Flow_0cibqgy</bpmn:incoming>
+      <bpmn:outgoing>Flow_notisLeadExists</bpmn:outgoing>
+      <bpmn:outgoing>Flow_is_lead_exists</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0cibqgy" sourceRef="Activity_lead_exist" targetRef="Gateway_is_lead_exists" />
+    <bpmn:sequenceFlow id="Flow_notisLeadExists" name="Нет" sourceRef="Gateway_is_lead_exists" targetRef="Activity_lead_create">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=is_lead_exists=false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_0kz59lk">
+      <bpmn:incoming>Flow_1w2lx8v</bpmn:incoming>
+      <bpmn:incoming>Flow_is_lead_exists</bpmn:incoming>
+      <bpmn:outgoing>Flow_02vnqtw</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1w2lx8v" sourceRef="Activity_lead_create" targetRef="Gateway_0kz59lk" />
+    <bpmn:sequenceFlow id="Flow_is_lead_exists" name="Да" sourceRef="Gateway_is_lead_exists" targetRef="Gateway_0kz59lk" />
+    <bpmn:sequenceFlow id="Flow_02vnqtw" sourceRef="Gateway_0kz59lk" targetRef="Activity_lead_info" />
+    <bpmn:sequenceFlow id="Flow_1e5qs9e" sourceRef="Activity_lead_info" targetRef="Gateway_result_task" />
+    <bpmn:serviceTask id="Activity_lead_exist" name="Поиск лида">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="lead_exists" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ws2hxu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cibqgy</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_lead_create" name="Создание лида">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="lead_create" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_notisLeadExists</bpmn:incoming>
+      <bpmn:outgoing>Flow_1w2lx8v</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_lead_info" name="Обработка лида">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-lead-processing" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_02vnqtw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1e5qs9e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_result_task" name="Задача требуется?" default="Flow_is_task_need">
+      <bpmn:incoming>Flow_1e5qs9e</bpmn:incoming>
+      <bpmn:outgoing>Flow_is_task_need</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1fujuh7</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_fail" name="Отказ">
+      <bpmn:incoming>Flow_143xvqb</bpmn:incoming>
+      <bpmn:terminateEventDefinition id="TerminateEventDefinition_050nn8g" />
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_task_options" name="Опции заказа">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="Form_hy1x5cl" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_is_task_need</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gf0lkh</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_is_task_need" name="Да" sourceRef="Gateway_result_task" targetRef="Activity_task_options" />
+    <bpmn:sequenceFlow id="Flow_1fujuh7" name="Нет" sourceRef="Gateway_result_task" targetRef="Activity_refuse">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=is_task_need=false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_143xvqb" sourceRef="Activity_refuse" targetRef="Event_fail" />
+    <bpmn:endEvent id="Event_complete" name="Заявка обработана">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0gf0lkh</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0gf0lkh" sourceRef="Activity_task_options" targetRef="Event_complete" />
+    <bpmn:userTask id="Activity_refuse" name="Оформить отказ">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-1nt4n0x" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1fujuh7</bpmn:incoming>
+      <bpmn:outgoing>Flow_143xvqb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:textAnnotation id="TextAnnotation_0mdu37b">
+      <bpmn:text>инфо о заказе</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1jp6a00" associationDirection="None" sourceRef="Activity_task_options" targetRef="TextAnnotation_0mdu37b" />
+    <bpmn:textAnnotation id="TextAnnotation_0w5yiqp">
+      <bpmn:text>Узнать задачу клиента</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0r6pgbq" associationDirection="None" sourceRef="Activity_refuse" targetRef="TextAnnotation_0w5yiqp" />
+  </bpmn:process>
+  <bpmn:error id="Error_17h9rg6" name="Error_32g04pp" errorCode="terminate_process" />
+  <bpmn:error id="Error_128g4f2" name="Error_terminate_process" errorCode="terminate_process" />
+  <bpmn:escalation id="Escalation_2jedpto" name="Escalation_fail" escalationCode="result_fail" />
+  <bpmn:escalation id="Escalation_3bsq1j0" name="Escalation_pick_self" escalationCode="pick_self" />
+  <bpmn:escalation id="Escalation_1u0j234" name="Escalation_pick" />
+  <bpmn:signal id="Signal_293qve5" name="result_fail" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_request">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_task_process">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="140" y="143" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0kcjrca_di" bpmnElement="Gateway_is_lead_exists" isMarkerVisible="true">
+        <dc:Bounds x="395" y="93" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="387" y="69" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0kz59lk_di" bpmnElement="Gateway_0kz59lk" isMarkerVisible="true">
+        <dc:Bounds x="655" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rvctb3_di" bpmnElement="Activity_lead_exist">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pmsx4f_di" bpmnElement="Activity_lead_create">
+        <dc:Bounds x="500" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_09l0i5h_di" bpmnElement="Activity_lead_info">
+        <dc:Bounds x="760" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_19sl34d_di" bpmnElement="Gateway_result_task" isMarkerVisible="true">
+        <dc:Bounds x="925" y="93" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="922" y="63" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1m18jon_di" bpmnElement="Event_fail" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
+        <dc:Bounds x="1212" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1215" y="255" width="30" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0imdbg6_di" bpmnElement="Activity_task_options">
+        <dc:Bounds x="1040" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06c1s77_di" bpmnElement="Event_complete">
+        <dc:Bounds x="1212" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1201" y="143" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uzjn7t_di" bpmnElement="Activity_refuse" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
+        <dc:Bounds x="1040" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1jp6a00_di" bpmnElement="Association_1jp6a00">
+        <di:waypoint x="1125" y="78" />
+        <di:waypoint x="1177" y="20" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0r6pgbq_di" bpmnElement="Association_0r6pgbq">
+        <di:waypoint x="1135" y="268" />
+        <di:waypoint x="1172" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ws2hxu_di" bpmnElement="Flow_1ws2hxu">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cibqgy_di" bpmnElement="Flow_0cibqgy">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="395" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_00i62tj_di" bpmnElement="Flow_notisLeadExists">
+        <di:waypoint x="420" y="143" />
+        <di:waypoint x="420" y="230" />
+        <di:waypoint x="500" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="426" y="184" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1w2lx8v_di" bpmnElement="Flow_1w2lx8v">
+        <di:waypoint x="600" y="230" />
+        <di:waypoint x="680" y="230" />
+        <di:waypoint x="680" y="143" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1w05vsw_di" bpmnElement="Flow_is_lead_exists">
+        <di:waypoint x="445" y="118" />
+        <di:waypoint x="655" y="118" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="543" y="100" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02vnqtw_di" bpmnElement="Flow_02vnqtw">
+        <di:waypoint x="705" y="118" />
+        <di:waypoint x="760" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e5qs9e_di" bpmnElement="Flow_1e5qs9e">
+        <di:waypoint x="860" y="118" />
+        <di:waypoint x="925" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1a773p7_di" bpmnElement="Flow_is_task_need">
+        <di:waypoint x="975" y="118" />
+        <di:waypoint x="1040" y="118" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1001" y="100" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fujuh7_di" bpmnElement="Flow_1fujuh7" bioc:stroke="#5b176d" color:border-color="#5b176d">
+        <di:waypoint x="950" y="143" />
+        <di:waypoint x="950" y="230" />
+        <di:waypoint x="1040" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="956" y="184" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_143xvqb_di" bpmnElement="Flow_143xvqb">
+        <di:waypoint x="1140" y="230" />
+        <di:waypoint x="1212" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gf0lkh_di" bpmnElement="Flow_0gf0lkh">
+        <di:waypoint x="1140" y="118" />
+        <di:waypoint x="1212" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0mdu37b_di" bpmnElement="TextAnnotation_0mdu37b">
+        <dc:Bounds x="1140" y="-10" width="100" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0w5yiqp_di" bpmnElement="TextAnnotation_0w5yiqp">
+        <dc:Bounds x="1140" y="300" width="100" height="41" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

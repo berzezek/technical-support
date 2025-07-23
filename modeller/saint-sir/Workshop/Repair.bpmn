@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="9533982" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:process id="Process_repair" name="Repair" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Получено согласование">
+      <bpmn:outgoing>Flow_0gd8yct</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0gd8yct" sourceRef="StartEvent_1" targetRef="Activity_0twvh6e" />
+    <bpmn:sequenceFlow id="Flow_126tea7" sourceRef="Activity_0twvh6e" targetRef="Activity_0nzl0c5" />
+    <bpmn:endEvent id="Event_03p56h2" name="Ремонт окончен">
+      <bpmn:incoming>Flow_166zvp9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_166zvp9" sourceRef="Activity_0nzl0c5" targetRef="Event_03p56h2" />
+    <bpmn:userTask id="Activity_0twvh6e" name="Получено в ремонт">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="Form_0s4qpx7" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0gd8yct</bpmn:incoming>
+      <bpmn:outgoing>Flow_126tea7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0nzl0c5" name="Ремонт закончен">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-12d0ui6" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_126tea7</bpmn:incoming>
+      <bpmn:outgoing>Flow_166zvp9</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_repair">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="133" y="143" width="70" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_03p56h2_di" bpmnElement="Event_03p56h2">
+        <dc:Bounds x="562" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="539" y="143" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0znzcss_di" bpmnElement="Activity_0twvh6e">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ll5g1n_di" bpmnElement="Activity_0nzl0c5">
+        <dc:Bounds x="400" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0gd8yct_di" bpmnElement="Flow_0gd8yct">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_126tea7_di" bpmnElement="Flow_126tea7">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="400" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_166zvp9_di" bpmnElement="Flow_166zvp9">
+        <di:waypoint x="500" y="118" />
+        <di:waypoint x="562" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

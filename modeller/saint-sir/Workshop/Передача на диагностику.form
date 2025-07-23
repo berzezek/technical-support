@@ -1,0 +1,23 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-0gvint7",
+  "components": [
+    {
+      "label": "Информация для диагностики",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1u53yol",
+        "columns": null
+      },
+      "id": "Field_1pfszkw",
+      "key": "InfoToDiagnostics"
+    }
+  ],
+  "type": "default"
+}

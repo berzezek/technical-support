@@ -1,0 +1,23 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-03d133v",
+  "components": [
+    {
+      "label": "Информация для ремонтника",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0kvzlm5",
+        "columns": null
+      },
+      "id": "Field_0z326qy",
+      "key": "info_to_repair"
+    }
+  ],
+  "type": "default"
+}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="9533982" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:process id="Process_inbound" name="Inbound" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_inbound" name="Получение">
+      <bpmn:outgoing>Flow_1aonufe</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1aonufe" sourceRef="StartEvent_inbound" targetRef="Activity_inbound" />
+    <bpmn:sequenceFlow id="Flow_01nh5bh" sourceRef="Activity_inbound" targetRef="Gateway_0aud6h1" />
+    <bpmn:endEvent id="Event_inbound" name="Отправлено на диагностику">
+      <bpmn:incoming>Flow_0813vog</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0813vog" sourceRef="Activity_diagnostics" targetRef="Event_inbound" />
+    <bpmn:userTask id="Activity_inbound" name="Получение">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-0i7wsif" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1aonufe</bpmn:incoming>
+      <bpmn:outgoing>Flow_01nh5bh</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_0aud6h1" name="Получен товар?" default="Flow_0pc26yt">
+      <bpmn:incoming>Flow_01nh5bh</bpmn:incoming>
+      <bpmn:outgoing>Flow_inbound</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0pc26yt</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_inbound" name="Да" sourceRef="Gateway_0aud6h1" targetRef="Activity_diagnostics">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=inbounded</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0pc26yt" name="Нет" sourceRef="Gateway_0aud6h1" targetRef="Event_0u7mkzt" />
+    <bpmn:endEvent id="Event_0u7mkzt" name="Не получено">
+      <bpmn:incoming>Flow_0pc26yt</bpmn:incoming>
+      <bpmn:terminateEventDefinition id="TerminateEventDefinition_13nbent" />
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_diagnostics" name="Передача на диагностику">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-0gvint7" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_inbound</bpmn:incoming>
+      <bpmn:outgoing>Flow_0813vog</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_inbound">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_inbound">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="140" y="143" width="56" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13atmr5_di" bpmnElement="Event_inbound">
+        <dc:Bounds x="722" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="702" y="143" width="79" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07twnqo_di" bpmnElement="Activity_inbound">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0aud6h1_di" bpmnElement="Gateway_0aud6h1" isMarkerVisible="true">
+        <dc:Bounds x="425" y="93" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="409" y="63" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_029u3qv_di" bpmnElement="Event_0u7mkzt">
+        <dc:Bounds x="562" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="548" y="255" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gdw7hm_di" bpmnElement="Activity_diagnostics">
+        <dc:Bounds x="560" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1aonufe_di" bpmnElement="Flow_1aonufe">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01nh5bh_di" bpmnElement="Flow_01nh5bh">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="425" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0813vog_di" bpmnElement="Flow_0813vog">
+        <di:waypoint x="660" y="118" />
+        <di:waypoint x="722" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08nl1fx_di" bpmnElement="Flow_inbound">
+        <di:waypoint x="475" y="118" />
+        <di:waypoint x="560" y="118" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="510" y="100" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0pc26yt_di" bpmnElement="Flow_0pc26yt">
+        <di:waypoint x="450" y="143" />
+        <di:waypoint x="450" y="230" />
+        <di:waypoint x="562" y="230" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="456" y="184" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

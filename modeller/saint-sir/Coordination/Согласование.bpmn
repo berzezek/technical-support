@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="9533982" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:process id="Process_coordination" name="Coordination" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="На согласование">
+      <bpmn:outgoing>Flow_1q4a1bd</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1q4a1bd" sourceRef="StartEvent_1" targetRef="Activity_to_agreed" />
+    <bpmn:sequenceFlow id="Flow_1vtoraw" sourceRef="Activity_to_agreed" targetRef="Gateway_is_agreed" />
+    <bpmn:sequenceFlow id="Flow_01h8pg3" sourceRef="Activity_print_forms" targetRef="Activity_payment_service" />
+    <bpmn:endEvent id="Event_06w57a0" name="Согласовано и оплачено">
+      <bpmn:incoming>Flow_0urvk41</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0urvk41" sourceRef="Activity_to_repair" targetRef="Event_06w57a0" />
+    <bpmn:exclusiveGateway id="Gateway_is_agreed" name="Согласовано?" default="Flow_0j45qmm">
+      <bpmn:incoming>Flow_1vtoraw</bpmn:incoming>
+      <bpmn:outgoing>Flow_is_agreed</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0j45qmm</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_is_agreed" name="Да" sourceRef="Gateway_is_agreed" targetRef="Activity_print_forms">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=is_agreed</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0j45qmm" name="Нет" sourceRef="Gateway_is_agreed" targetRef="Event_1cgm3x0" />
+    <bpmn:exclusiveGateway id="Gateway_is_paid" name="Оплачено?" default="Flow_1r3mvj1">
+      <bpmn:incoming>Flow_1opx8aa</bpmn:incoming>
+      <bpmn:outgoing>Flow_is_paid</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1r3mvj1</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_is_paid" name="Да" sourceRef="Gateway_is_paid" targetRef="Activity_to_repair">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=is_paid</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_1cgm3x0">
+      <bpmn:incoming>Flow_0j45qmm</bpmn:incoming>
+      <bpmn:terminateEventDefinition id="TerminateEventDefinition_1jwdva5" />
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_payment_service" name="Получение оплаты">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="agreed_payment_service" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01h8pg3</bpmn:incoming>
+      <bpmn:incoming>Flow_1rbq2bk</bpmn:incoming>
+      <bpmn:outgoing>Flow_1opx8aa</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_print_forms" name="Получение печатных форм">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="agreed_print_form_service" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_is_agreed</bpmn:incoming>
+      <bpmn:outgoing>Flow_01h8pg3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_to_agreed" name="Согласование с клиентом">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-0wheutc" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1q4a1bd</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vtoraw</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_to_repair" name="Передача на ремонт">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-03d133v" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_is_paid</bpmn:incoming>
+      <bpmn:outgoing>Flow_0urvk41</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:intermediateCatchEvent id="Event_1y86rl3" name="ждем 3 по 5">
+      <bpmn:incoming>Flow_1r3mvj1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1rbq2bk</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1edpt0w">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1r3mvj1" name="Нет" sourceRef="Gateway_is_paid" targetRef="Event_1y86rl3" />
+    <bpmn:sequenceFlow id="Flow_1rbq2bk" sourceRef="Event_1y86rl3" targetRef="Activity_payment_service" />
+    <bpmn:sequenceFlow id="Flow_1opx8aa" sourceRef="Activity_payment_service" targetRef="Gateway_is_paid" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_coordination">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="312" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="286" y="235" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06w57a0_di" bpmnElement="Event_06w57a0">
+        <dc:Bounds x="1292" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1273" y="235" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1xgb3uk_di" bpmnElement="Gateway_is_agreed" isMarkerVisible="true">
+        <dc:Bounds x="555" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="544" y="155" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1e8wmev_di" bpmnElement="Gateway_is_paid" isMarkerVisible="true">
+        <dc:Bounds x="1015" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1012" y="155" width="57" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cixts1_di" bpmnElement="Activity_payment_service">
+        <dc:Bounds x="840" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ky2fsv_di" bpmnElement="Activity_print_forms">
+        <dc:Bounds x="660" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xslwn0_di" bpmnElement="Activity_to_agreed">
+        <dc:Bounds x="400" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1mw9u9k_di" bpmnElement="Activity_to_repair">
+        <dc:Bounds x="1130" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0rma8tx_di" bpmnElement="Event_1cgm3x0">
+        <dc:Bounds x="692" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1k9n991_di" bpmnElement="Event_1y86rl3">
+        <dc:Bounds x="1022" y="302" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1010" y="345" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1q4a1bd_di" bpmnElement="Flow_1q4a1bd">
+        <di:waypoint x="348" y="210" />
+        <di:waypoint x="400" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vtoraw_di" bpmnElement="Flow_1vtoraw">
+        <di:waypoint x="500" y="210" />
+        <di:waypoint x="555" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01h8pg3_di" bpmnElement="Flow_01h8pg3">
+        <di:waypoint x="760" y="210" />
+        <di:waypoint x="840" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0urvk41_di" bpmnElement="Flow_0urvk41">
+        <di:waypoint x="1230" y="210" />
+        <di:waypoint x="1292" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ei8bmo_di" bpmnElement="Flow_is_agreed">
+        <di:waypoint x="605" y="210" />
+        <di:waypoint x="660" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="625" y="192" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0j45qmm_di" bpmnElement="Flow_0j45qmm">
+        <di:waypoint x="580" y="235" />
+        <di:waypoint x="580" y="320" />
+        <di:waypoint x="692" y="320" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="586" y="275" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1va98qy_di" bpmnElement="Flow_is_paid">
+        <di:waypoint x="1065" y="210" />
+        <di:waypoint x="1130" y="210" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1090" y="192" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1r3mvj1_di" bpmnElement="Flow_1r3mvj1">
+        <di:waypoint x="1040" y="235" />
+        <di:waypoint x="1040" y="302" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1046" y="265" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rbq2bk_di" bpmnElement="Flow_1rbq2bk">
+        <di:waypoint x="1022" y="320" />
+        <di:waypoint x="890" y="320" />
+        <di:waypoint x="890" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1opx8aa_di" bpmnElement="Flow_1opx8aa">
+        <di:waypoint x="940" y="210" />
+        <di:waypoint x="1015" y="210" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

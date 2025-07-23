@@ -1,0 +1,33 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-0tepa55",
+  "components": [
+    {
+      "label": "Информация для получателя",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0knifai",
+        "columns": null
+      },
+      "id": "Field_09bab2t",
+      "key": "InfoToInbound"
+    },
+    {
+      "label": "Передано",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0rw244h",
+        "columns": null
+      },
+      "id": "Field_0poymrc",
+      "key": "is_pick_inbound"
+    }
+  ],
+  "type": "default"
+}

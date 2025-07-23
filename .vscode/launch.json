@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "FastAPI Debug",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "cwd": "${workspaceFolder}/backend",
+      "args": [
+        "src.main:app",
+        "--reload",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000"
+      ],
+      "jinja": true,
+      "env": {
+        "LOGURU_LEVEL": "DEBUG"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Nuxt App",
+      "cwd": "${workspaceFolder}/frontend",
+      "program": "${workspaceFolder}/frontend/node_modules/.bin/nuxt",
+      "args": [
+        "dev"
+      ],
+      "autoAttachChildProcesses": true,
+      "runtimeExecutable": "node",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "sourceMaps": true,
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  ]
+}

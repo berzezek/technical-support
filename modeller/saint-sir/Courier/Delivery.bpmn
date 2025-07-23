@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="9533982" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.7.0">
+  <bpmn:process id="Process_delivery" name="Delivery" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Забрал товар">
+      <bpmn:outgoing>Flow_0z1vayg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0z1vayg" sourceRef="StartEvent_1" targetRef="Activity_from_outbound" />
+    <bpmn:sequenceFlow id="Flow_174nw55" sourceRef="Activity_from_outbound" targetRef="Activity_client_delivered" />
+    <bpmn:endEvent id="Event_10m2koz" name="Доставлено">
+      <bpmn:incoming>Flow_1con94a</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1con94a" sourceRef="Activity_client_delivered" targetRef="Event_10m2koz" />
+    <bpmn:userTask id="Activity_from_outbound" name="Получено из отгрузки">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-0qlzft8" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0z1vayg</bpmn:incoming>
+      <bpmn:outgoing>Flow_174nw55</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_client_delivered" name="Доставлено клиенту">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="form-08s6jwl" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_174nw55</bpmn:incoming>
+      <bpmn:outgoing>Flow_1con94a</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:escalation id="Escalation_1knrtc6" name="Escalation_fail" escalationCode="result_fail" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_delivery">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="133" y="143" width="70" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_10m2koz_di" bpmnElement="Event_10m2koz">
+        <dc:Bounds x="562" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="550" y="143" width="61" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vc1q1k_di" bpmnElement="Activity_from_outbound">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_145bv4c_di" bpmnElement="Activity_client_delivered">
+        <dc:Bounds x="400" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0z1vayg_di" bpmnElement="Flow_0z1vayg">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_174nw55_di" bpmnElement="Flow_174nw55">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="400" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1con94a_di" bpmnElement="Flow_1con94a">
+        <di:waypoint x="500" y="118" />
+        <di:waypoint x="562" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

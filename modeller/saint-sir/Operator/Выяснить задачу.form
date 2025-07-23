@@ -1,0 +1,41 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "3afe2c3"
+  },
+  "schemaVersion": 18,
+  "id": "form-1c6odr6",
+  "components": [
+    {
+      "label": "Выяснить задачу",
+      "values": [
+        {
+          "label": "Забор",
+          "value": "pick"
+        },
+        {
+          "label": "Самовывоз",
+          "value": "pickup"
+        },
+        {
+          "label": "Перезвонить",
+          "value": "callback_later"
+        },
+        {
+          "label": "Отказ",
+          "value": "refuse"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0fi9ooo",
+        "columns": null
+      },
+      "id": "Field_1lwdv7e",
+      "key": "result_task"
+    }
+  ],
+  "type": "default"
+}

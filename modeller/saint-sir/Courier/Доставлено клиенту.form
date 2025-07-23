@@ -1,0 +1,23 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-08s6jwl",
+  "components": [
+    {
+      "label": "Информация о доставке",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_16hmwib",
+        "columns": null
+      },
+      "id": "Field_12bp71x",
+      "key": "info_delivered_to_client"
+    }
+  ],
+  "type": "default"
+}

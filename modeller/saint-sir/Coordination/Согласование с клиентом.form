@@ -1,0 +1,33 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-0wheutc",
+  "components": [
+    {
+      "label": "Результат согласования",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1680f23",
+        "columns": null
+      },
+      "id": "Field_0l9k214",
+      "key": "approval_result"
+    },
+    {
+      "label": "Согласовано",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_05mb4dd",
+        "columns": null
+      },
+      "id": "Field_0fdbqxr",
+      "key": "is_agreed"
+    }
+  ],
+  "type": "default"
+}

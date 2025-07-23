@@ -1,0 +1,34 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "3afe2c3"
+  },
+  "schemaVersion": 18,
+  "id": "Form_hy1x5cl",
+  "components": [
+    {
+      "label": "Опции задачи",
+      "values": [
+        {
+          "label": "Требуется забор",
+          "value": "self_delivery"
+        },
+        {
+          "label": "Требуется доставка",
+          "value": "self_pick"
+        }
+      ],
+      "type": "checklist",
+      "layout": {
+        "row": "Row_0tnbgo5",
+        "columns": null
+      },
+      "id": "Field_1mmbok2",
+      "key": "task_options"
+    }
+  ],
+  "generated": true,
+  "type": "default"
+}

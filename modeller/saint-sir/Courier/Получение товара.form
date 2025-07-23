@@ -1,0 +1,33 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.7.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "9533982"
+  },
+  "schemaVersion": 18,
+  "id": "form-0j3i2dz",
+  "components": [
+    {
+      "label": "Информация о получении",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0uizq3v",
+        "columns": null
+      },
+      "id": "Field_15jrel2",
+      "key": "pickedInfo"
+    },
+    {
+      "label": "Получено",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0efs6lq",
+        "columns": null
+      },
+      "id": "Field_0geedii",
+      "key": "is_picked"
+    }
+  ],
+  "type": "default"
+}
