@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.6">
+  <diagram name="Страница-1" id="5w5D8f1zwQomm7Dn0vb_">
+    <mxGraphModel dx="1678" dy="874" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="10000" pageHeight="10000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="624" width="722" x="315" y="101" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-2" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" value="ForteMarket" vertex="1">
+          <mxGeometry height="41" width="169.5" x="606.75" y="174" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-4" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Мерчант 1" vertex="1">
+          <mxGeometry height="60" width="140" x="412" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-5" parent="rwHUQLJ4YSpmOGylHLYM-4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Счет в Банке А" vertex="1">
+          <mxGeometry height="30" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-8" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Мерчант 2" vertex="1">
+          <mxGeometry height="60" width="140" x="824" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-9" parent="rwHUQLJ4YSpmOGylHLYM-8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Счет в Банке Б" vertex="1">
+          <mxGeometry height="30" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-16" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Покупатель 1" vertex="1">
+          <mxGeometry height="60" width="140" x="407" y="596" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Виртуальный кошелек" vertex="1">
+          <mxGeometry height="30" width="178" x="599" y="372" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-28" edge="1" parent="1" source="rwHUQLJ4YSpmOGylHLYM-4" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=none;" target="rwHUQLJ4YSpmOGylHLYM-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-29" edge="1" parent="1" source="rwHUQLJ4YSpmOGylHLYM-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" target="rwHUQLJ4YSpmOGylHLYM-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-30" edge="1" parent="1" source="rwHUQLJ4YSpmOGylHLYM-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.464;entryY=0.977;entryDx=0;entryDy=0;entryPerimeter=0;" target="rwHUQLJ4YSpmOGylHLYM-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-31" edge="1" parent="1" source="rwHUQLJ4YSpmOGylHLYM-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.526;entryY=1.023;entryDx=0;entryDy=0;entryPerimeter=0;curved=1;" target="rwHUQLJ4YSpmOGylHLYM-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
