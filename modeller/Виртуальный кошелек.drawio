@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.6">
   <diagram name="Страница-1" id="5w5D8f1zwQomm7Dn0vb_">
-    <mxGraphModel dx="1901" dy="991" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="10000" pageHeight="10000" math="0" shadow="0">
+    <mxGraphModel dx="1584" dy="826" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="10000" pageHeight="10000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -25,7 +25,7 @@
         <mxCell id="rCnODqQaHAiPQHhDcRZu-5" parent="rwHUQLJ4YSpmOGylHLYM-8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Счет в Банке С" vertex="1">
           <mxGeometry height="30" width="140" y="60" as="geometry" />
         </mxCell>
-        <mxCell id="rCnODqQaHAiPQHhDcRZu-15" edge="1" parent="1" source="rwHUQLJ4YSpmOGylHLYM-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;shape=flexArrow;dashed=1;dashPattern=8 8;" target="rCnODqQaHAiPQHhDcRZu-14">
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-15" edge="1" parent="1" source="rwHUQLJ4YSpmOGylHLYM-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;curved=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;shape=flexArrow;dashed=1;dashPattern=8 8;" target="rCnODqQaHAiPQHhDcRZu-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="rwHUQLJ4YSpmOGylHLYM-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBorderColor=default;spacingLeft=0;" value="Виртуальный кошелек" vertex="1">
@@ -81,11 +81,35 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rCnODqQaHAiPQHhDcRZu-12" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Виртуальный кошелек&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;Транзитный счет 2870&lt;/p&gt;&lt;p&gt;Привязывается к сущности участника ForteMarket&lt;/p&gt;&lt;p&gt;Управляется на стороне ForteMarket&lt;/p&gt;" vertex="1">
-          <mxGeometry height="134.5" width="317" x="643" y="502.5" as="geometry" />
-        </mxCell>
         <mxCell id="rCnODqQaHAiPQHhDcRZu-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Forte" vertex="1">
-          <mxGeometry height="60" width="120" x="1081" y="449" as="geometry" />
+          <mxGeometry height="60" width="155" x="610.5" y="714" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="515" width="604" x="1042" y="164" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-19" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;ForteMarket&lt;/font&gt;" vertex="1">
+          <mxGeometry height="41" width="169.5" x="1260.75" y="174" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-27" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Кошелек М1" vertex="1">
+          <mxGeometry height="60" width="140" x="1077" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-28" parent="rCnODqQaHAiPQHhDcRZu-27" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Виртуальный счет" vertex="1">
+          <mxGeometry height="30" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-29" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Кошелек М2" vertex="1">
+          <mxGeometry height="60" width="140" x="1275.5" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-30" parent="rCnODqQaHAiPQHhDcRZu-29" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Виртуальный счет" vertex="1">
+          <mxGeometry height="30" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-31" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Кошелек П1" vertex="1">
+          <mxGeometry height="60" width="140" x="1477" y="248" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-32" parent="rCnODqQaHAiPQHhDcRZu-31" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Виртуальный счет" vertex="1">
+          <mxGeometry height="30" width="140" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rCnODqQaHAiPQHhDcRZu-33" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Виртуальный кошелек&lt;/font&gt;&lt;/h1&gt;&lt;p&gt;Транзитный счет ForteMarket (единый 2870)&lt;/p&gt;&lt;p&gt;Привязывается к сущности участника ForteMarket&lt;/p&gt;&lt;p&gt;Управляется на стороне ForteMarket&lt;/p&gt;" vertex="1">
+          <mxGeometry height="168" width="248" x="1220" y="430" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
