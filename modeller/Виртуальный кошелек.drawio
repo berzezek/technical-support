@@ -5,7 +5,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="rwHUQLJ4YSpmOGylHLYM-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="624" width="722" x="315" y="101" as="geometry" />
+          <mxGeometry height="624" width="722" x="315" y="87" as="geometry" />
         </mxCell>
         <mxCell id="rwHUQLJ4YSpmOGylHLYM-2" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" value="ForteMarket" vertex="1">
           <mxGeometry height="41" width="169.5" x="606.75" y="174" as="geometry" />
@@ -22,7 +22,7 @@
         <mxCell id="rwHUQLJ4YSpmOGylHLYM-9" parent="rwHUQLJ4YSpmOGylHLYM-8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Счет в Банке Б" vertex="1">
           <mxGeometry height="30" width="140" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="rwHUQLJ4YSpmOGylHLYM-16" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Покупатель 1" vertex="1">
+        <mxCell id="rwHUQLJ4YSpmOGylHLYM-16" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Покупатель 1" vertex="1">
           <mxGeometry height="60" width="140" x="407" y="596" as="geometry" />
         </mxCell>
         <mxCell id="rwHUQLJ4YSpmOGylHLYM-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Виртуальный кошелек" vertex="1">
